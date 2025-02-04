@@ -46,7 +46,7 @@ func write(c Config) error {
 	return nil
 }
 
-func Read() Config {
+func Read() *Config {
 	path, err := getConfigPath()
 	if err != nil{
 		fmt.Printf("%v", err)
@@ -66,7 +66,7 @@ func Read() Config {
 		fmt.Printf("%v", err)
 	}
 
-	return config
+	return &config
 }
 
 func getConfigPath() (string, error) {
