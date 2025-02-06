@@ -1,17 +1,34 @@
 package main
 
 import (
-	"github.com/Raikuha/gator/internal/config"
+	"database/sql"
 	"fmt"
 	"os"
+
+	"github.com/Raikuha/gator/internal/config"
+	"github.com/Raikuha/gator/internal/database"
+	"github.com/Raikuha/gator/internal/commands"
+	_ "github.com/lib/pq"
 )
 
 func main () {
-	var state config.State
+	var state commands.State
 	state.Cfg = config.Read()
 
-	commands := config.Commands{List:make(map[string]func(*config.State, config.Command) error, 3)}
-	commands.Register("login", config.HandlerLogin)
+	dbURL := state.Cfg.DB_url 
+
+	db, err := sql.Open("postgres", dbURL)
+	if err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
+
+	state.Db = database.New(db)
+
+	cmds := commands.Commands{List:make(map[string]func(*commands.State, commands.Command) error, 3)}
+	cmds.Register("login", commands.HandlerLogin)
+	cmds.Register("register", commands.HandlerRegister)
+
 
 	args := os.Args
 
@@ -20,13 +37,14 @@ func main () {
 		os.Exit(1)
 	}
 
-	cmd := config.Command{
+	cmd := commands.Command{
 		Name: args[1],
 		Args: args[2:],
 	}
 
-	err := commands.Run(&state, cmd)
+	err = cmds.Run(&state, cmd)
 	if err != nil {
 		fmt.Println(err)
+		os.Exit(1)
 	}
 }
