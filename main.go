@@ -28,14 +28,14 @@ func main () {
 	cmds := commands.Commands{List:make(map[string]func(*commands.State, commands.Command) error, 3)}
 	cmds.Register("login", commands.HandlerLogin)
 	cmds.Register("register", commands.HandlerRegister)
+	cmds.Register("reset", commands.HandlerReset)
+	cmds.Register("users", commands.HandlerUsers)
+	cmds.Register("agg", commands.HandlerAgg)
+	cmds.Register("addfeed", commands.HandlerAddFeed)
+	cmds.Register("feeds", commands.HandlerFeeds)
 
 
 	args := os.Args
-
-	if len(args) < 3 {
-		fmt.Println("Missing arguments")
-		os.Exit(1)
-	}
 
 	cmd := commands.Command{
 		Name: args[1],
