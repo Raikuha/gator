@@ -9,6 +9,7 @@ import (
 	"github.com/google/uuid"
 )
 
+
 func HandlerLogin(s *state, cmd command) error {
 	if err := checkArgs(cmd.Args, 1); err != nil {
 		return err
@@ -51,6 +52,7 @@ func HandlerRegister(s *state, cmd command) error {
 	return nil
 }
 
+
 func HandlerUsers(s *state, cmd command) error {
 	userlist, err := s.db.GetUsers(context.Background())
 	if err != nil {
@@ -71,6 +73,7 @@ func HandlerUsers(s *state, cmd command) error {
 
 	return nil
 }
+
 
 func HandlerReset(s *state, cmd command) error {
 	err := s.db.Reset(context.Background())
