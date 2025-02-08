@@ -54,16 +54,23 @@ func main () {
 }
 
 func register_commands(cmds commands) {
-	cmds.register("login", HandlerLogin)
-	cmds.register("register", HandlerRegister)
-	cmds.register("reset", HandlerReset)
+	// User commands
 	cmds.register("users", HandlerUsers)
-	cmds.register("agg", HandlerAgg)
-	cmds.register("addfeed", middlewareLoggedIn(HandlerAddFeed))
+	cmds.register("register", HandlerRegister)
+	cmds.register("login", HandlerLogin)
+	cmds.register("reset", HandlerReset)
+
+	// Feeds commands
 	cmds.register("feeds", HandlerFeeds)
+	cmds.register("addfeed", middlewareLoggedIn(HandlerAddFeed))
+
+	// Follow commands
 	cmds.register("follow", middlewareLoggedIn(HandlerFollowFeed))
 	cmds.register("unfollow", middlewareLoggedIn(HandlerUnfollow))
 	cmds.register("following", middlewareLoggedIn(HandlerFollowing))
+
+	// Posts commands
+	cmds.register("agg", HandlerAgg)
 	cmds.register("browse", middlewareLoggedIn(HandlerBrowse))
 }
 

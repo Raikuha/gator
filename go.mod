@@ -8,9 +8,3 @@ require (
 	github.com/lib/pq v1.10.9
 	github.com/google/uuid v1.6.0
 )
-
-replace github.com/Raikuha/gator/internal/config => ./internal/config
-
-replace github.com/Raikuha/gator/internal/commands => ./internal/commands
-
-replace github.com/Raikuha/gator/internal/database => ./internal/database
