@@ -7,7 +7,7 @@ This project called gator is a CLI RSS aggregator that requires postgresql and G
 You can install gator by using `go install` on the terminal
 
 ```
-$ go install https://github.com/Raikuha/gator@latest
+$ go install github.com/Raikuha/gator@latest
 ```
 
 ## Getting started
