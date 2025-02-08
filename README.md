@@ -26,40 +26,40 @@ Once everything is set, you can use it through the command line with a set of si
 ## User Commands
 
 * Register a new user
-> ./gator register [username]
+> gator register [username]
 
 * Login as an existing user
-> ./gator login [username]
+> gator login [username]
 
 * List all users
-> ./gator users
+> gator users
 
 * Delete all users (and any related database entries)
-> ./gator reset
+> gator reset
 
 ## Feeds
 
 * Add a feed (associated to current active user)
-> ./gator addfeed [title] [url]
+> gator addfeed [title] [url]
 
 * List all feeds in the database
-> ./gator feeds
+> gator feeds
 
 * Follow a feed added by other users
-> ./gator follow [url]
+> gator follow [url]
 
 * Unfollow a feed
-> ./gator unfollow [url]
+> gator unfollow [url]
 
 * List all your current follows
-> ./gator following
+> gator following
 
 ## Posts
 
 * Retrieve new posts over an interval such as 1m, 1h...
-> ./gator agg [interval]
+> gator agg [interval]
 
 * Browse through followed posts (default 2)
-> ./gator browse [num]
+> gator browse [num]
 
 While using the command Agg to update the database in the background, you can still open a new terminal to perform other commands
